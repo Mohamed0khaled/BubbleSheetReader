@@ -1,0 +1,75 @@
+@page
+@model BubbleSheetReader.Pages.ResultModel
+@{
+    ViewData["Title"] = "Processing Result";
+}
+
+<h1>Processing Result</h1>
+<p><strong>File:</strong> @Model.Result.SourceFileName</p>
+<p><strong>Template:</strong> @Model.Result.TemplateName</p>
+
+<div class="notice warning">
+    Handwriting recognition is currently using fixed test values. These values were not read from the uploaded document.
+</div>
+
+<section>
+    <h2>Header Information</h2>
+    <dl class="summary-grid">
+        <div><dt>ID</dt><dd>@Model.Result.Id</dd></div>
+        <div><dt>Truck No</dt><dd>@Model.Result.TruckNo</dd></div>
+        <div><dt>Name</dt><dd>@Model.Result.Name <span class="tag">TEST VALUE</span></dd></div>
+        <div><dt>Date</dt><dd>@Model.Result.Date <span class="tag">TEST VALUE</span></dd></div>
+        <div><dt>Shift</dt><dd>@Model.Result.Shift</dd></div>
+        <div><dt>Crew</dt><dd>@Model.Result.Crew</dd></div>
+        <div><dt>Start Hrs</dt><dd>@Model.Result.StartHours <span class="tag">TEST VALUE</span></dd></div>
+        <div><dt>Finish Hrs</dt><dd>@Model.Result.FinishHours <span class="tag">TEST VALUE</span></dd></div>
+    </dl>
+</section>
+
+@if (Model.Result.DebugImageUrl is not null)
+{
+    <section>
+        <h2>ID Detection Debug Image</h2>
+        <p>Green boxes are selected, red boxes are empty, and yellow boxes are unclear.</p>
+        <img class="debug-image" src="@Model.Result.DebugImageUrl" alt="ID bubble detection debug visualization" />
+    </section>
+}
+
+<section>
+    <h2>Daily Rows</h2>
+    <table>
+        <thead><tr><th>Row</th><th>Equipment</th><th>Material</th><th>Payload</th><th>Dump</th><th>Time</th><th>Status</th></tr></thead>
+        <tbody>
+        @foreach (var row in Model.Result.DailyRows)
+        {
+            <tr>
+                <td>@row.RowNumber</td>
+                <td>@(string.IsNullOrWhiteSpace(row.Equipment) ? "—" : row.Equipment)</td>
+                <td>@(string.IsNullOrWhiteSpace(row.Material) ? "—" : row.Material)</td>
+                <td>@(string.IsNullOrWhiteSpace(row.Payload) ? "—" : row.Payload)</td>
+                <td>@(string.IsNullOrWhiteSpace(row.Dump) ? "—" : row.Dump)</td>
+                <td>@(string.IsNullOrWhiteSpace(row.Time) ? "—" : row.Time)</td>
+                <td><span class="status @row.Status.ToLowerInvariant()">@row.Status</span></td>
+            </tr>
+        }
+        </tbody>
+    </table>
+</section>
+
+@if (Model.Result.Warnings.Count > 0)
+{
+    <section>
+        <h2>Warnings</h2>
+        <ul class="warnings">
+        @foreach (var warning in Model.Result.Warnings)
+        {
+            <li>@warning</li>
+        }
+        </ul>
+    </section>
+}
+
+<div class="actions">
+    <a class="button" asp-page-handler="Download">Download Excel</a>
+    <a class="button secondary" asp-page="/Index">Process another file</a>
+</div>

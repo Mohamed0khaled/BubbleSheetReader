@@ -1,0 +1,34 @@
+﻿@page
+@model IndexModel
+@{
+    ViewData["Title"] = "Bubble Sheet Reader";
+}
+
+<div class="hero">
+    <p class="eyebrow">LOCAL MVP</p>
+    <h1>Bubble Sheet<br />Reader</h1>
+    <p class="intro">Upload a Daily Load Sheet, inspect the extracted rows, and export the reviewable data to Excel.</p>
+</div>
+
+<form method="post" enctype="multipart/form-data" class="panel upload-panel">
+    <div class="field">
+        <label asp-for="Template">Template</label>
+        <select asp-for="Template">
+            <option>Template 1</option>
+        </select>
+    </div>
+    <div class="field">
+        <label asp-for="Upload">Bubble Sheet file</label>
+        <input asp-for="Upload" type="file" accept=".jpg,.jpeg,.png,.pdf" />
+        <small>Accepted: JPG, JPEG, PNG, PDF</small>
+    </div>
+    @if (Model.ErrorMessage is not null)
+    {
+        <p class="notice warning">@Model.ErrorMessage</p>
+    }
+    <button class="button" type="submit">Process Bubble Sheet</button>
+</form>
+
+<div class="notice warning">
+    Handwritten fields currently use fixed test values. Bubble coordinates for Template 1 still need to be measured from a completed scan.
+</div>

@@ -1,0 +1,32 @@
+:root { color-scheme: light; font-family: Georgia, 'Times New Roman', serif; color: #1c2421; background: #eef1eb; }
+body { margin: 0; background: #eef1eb; }
+main { max-width: 1180px; margin: 0 auto; padding: 3rem 1.25rem; }
+h1, h2 { font-family: 'Trebuchet MS', sans-serif; letter-spacing: 0; }
+h1 { font-size: clamp(2rem, 5vw, 4.5rem); line-height: .95; margin: 0 0 .5rem; color: #143d35; }
+h2 { margin-top: 2rem; color: #275d4e; }
+p { font-size: 1.05rem; }
+.hero { max-width: 650px; padding: 1rem 0 2rem; }
+.eyebrow { color: #e27d3f; font: bold .8rem 'Trebuchet MS', sans-serif; letter-spacing: .12em; }
+.intro { font-size: 1.25rem; max-width: 35rem; }
+.panel, section { background: #fffdf7; border: 1px solid #c6d0c6; padding: 1.25rem; margin-top: 1.25rem; box-shadow: 5px 5px 0 #d7dfd5; }
+.upload-panel { max-width: 42rem; }
+label { display: block; font-weight: bold; margin-bottom: .35rem; }
+input, select { width: 100%; box-sizing: border-box; padding: .7rem; border: 1px solid #71827a; background: white; font: inherit; }
+.field { margin: 1rem 0; }
+small { color: #5b6b63; }
+.button { display: inline-block; padding: .75rem 1.1rem; background: #e27d3f; color: white; text-decoration: none; border: 0; cursor: pointer; font-weight: bold; }
+.button.secondary { background: #275d4e; }
+.actions { display: flex; gap: .75rem; flex-wrap: wrap; margin-top: 1.5rem; }
+.notice { padding: 1rem; border-left: 5px solid; margin: 1rem 0; }
+.warning { background: #fff0d1; border-color: #c47719; }
+.summary-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: .8rem; }
+.summary-grid div { border-bottom: 1px solid #d8dfd6; padding: .5rem 0; }
+dt { color: #5b6b63; font-size: .9rem; } dd { margin: .2rem 0 0; font-weight: bold; }
+.tag { color: #9a4d1c; font-size: .72rem; }
+table { width: 100%; border-collapse: collapse; background: white; font-family: 'Trebuchet MS', sans-serif; font-size: .9rem; }
+th, td { border: 1px solid #c6d0c6; padding: .5rem; text-align: left; }
+th { background: #dce9df; }
+.status { font-weight: bold; } .status.ok { color: #237047; } .status.review { color: #ac5d14; } .status.empty { color: #66736d; }
+.warnings { line-height: 1.7; }
+.debug-image { display: block; width: min(100%, 900px); height: auto; border: 1px solid #71827a; }
+@media (max-width: 700px) { main { padding: 1.5rem .75rem; } section { overflow-x: auto; } }
